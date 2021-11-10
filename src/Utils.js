@@ -24,7 +24,7 @@ export const getTrackers = async (event) => {
   return trackers;
 };
 
-export const getTracker = async ({event, id}) => {
+export const getTracker = async ({id}) => {
   const deta = Deta(DEV_PROJECT_KEY);
   const db = deta.Base("attendance");
   const tracker = await db.get(id);
@@ -34,6 +34,9 @@ export const getTracker = async ({event, id}) => {
 export const joinTracker = (name, tracker) => {
   const deta = Deta(DEV_PROJECT_KEY);
   const db = deta.Base("attendance");
+  if (tracker.people.includes(name.value)) {
+    return "You have already joined this tracker."
+  }
   tracker.people.push(name.value);
   db.put(tracker)
   return "Success";

@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { Deta } from 'deta';
 import { useNavigate } from "react-router-dom";
-
-import { DEV_PROJECT_KEY } from "./Keys.js"
 
 function Register(props) {
     const navigate = useNavigate();

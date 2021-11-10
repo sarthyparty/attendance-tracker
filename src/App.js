@@ -31,7 +31,7 @@ function App() {
               <Route path="register" element={<Register/>} />
               <Route path="dashboard" element={<Dashboard/>}>
                 <Route path="" element={<Welcome/>} />
-                <Route path="tracker/:id" element={<Tracker/>} />
+                <Route path="tracker/:id/*" element={<Tracker/>} />
                 <Route path="stats" element={<Stats/>} />
                 <Route path="trackers" element={<Trackers/>} />
               </Route>

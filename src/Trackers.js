@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { getTrackers } from "./Utils.js";
 import { useAsync } from "react-async";
@@ -6,6 +6,7 @@ import Loading from "./Loading.js";
 
 function Trackers() {
   const { data } = useAsync({ promiseFn: getTrackers });
+
   if (data) {
     console.log(data);
     return (
