@@ -1,7 +1,7 @@
 import { Deta } from "deta";
 import { DEV_PROJECT_KEY } from "./Keys";
 
-const user = "ChinmayaTracker"
+export var user = "ChinmayaTracker"
 
 export const setupTracker = () => {
   const deta = Deta(DEV_PROJECT_KEY);
@@ -12,7 +12,7 @@ export const setupTracker = () => {
     name: user,
     people: [],
   });
-  console.log(tracker);
+  return tracker;
 };
 
 export const getTrackers = async (event) => {

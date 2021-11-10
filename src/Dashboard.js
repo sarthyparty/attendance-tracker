@@ -1,23 +1,29 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { setupTracker } from "./Utils.js"
-
+import React from "react";
+import { Outlet } from "react-router-dom";
+import { setupTracker, user } from "./Utils.js";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar.js";
 
 function Dashboard(props) {
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    props.history.push("/login");
+    navigate("/login");
   };
 
+  const create = () => {
+    setupTracker();
+    navigate("/dashboard/trackers");
+  };
 
   return (
     <div>
-      <div className="header">
-            <NavLink activeClassName="active" to="/dashboard/trackers">Trackers</NavLink><small></small>
-            <NavLink activeClassName="active" to="/dashboard/stats">Stats</NavLink><small></small>
+      <Navbar />
+      <Outlet />
+      <div class="dashboard">
+        <input type="button" onClick={handleLogout} value="Logout" />
+        <input type="button" onClick={create} value="Create Tracker" />
       </div>
-      <input type="button" onClick={handleLogout} value="Logout" />
-      <input type="button" onClick={setupTracker} value="Create Tracker" />
     </div>
   );
 }
