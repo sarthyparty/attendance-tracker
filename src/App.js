@@ -11,6 +11,7 @@ import Stats from "./Stats.js";
 import Trackers from "./Trackers.js";
 import Join from "./Join.js"
 import Welcome from "./Welcome.js";
+import Create from "./CreateTracker.js"
  
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="register" element={<Register/>} />
               <Route path="dashboard" element={<Dashboard/>}>
                 <Route path="" element={<Welcome/>} />
+                <Route path="create" element={<Create/>} />
                 <Route path="tracker/:id/*" element={<Tracker/>} />
                 <Route path="stats" element={<Stats/>} />
                 <Route path="trackers" element={<Trackers/>} />

@@ -1,6 +1,5 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { setupTracker, user } from "./Utils.js";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar.js";
 
@@ -12,8 +11,7 @@ function Dashboard(props) {
   };
 
   const create = () => {
-    setupTracker();
-    navigate("/dashboard/trackers");
+    navigate("/dashboard/create");
   };
 
   return (

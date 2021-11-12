@@ -1,14 +1,14 @@
 import { Deta } from "deta";
 import { DEV_PROJECT_KEY } from "./Keys";
 
-export var user = "ChinmayaTracker"
+export var user = "User"
 
 export const setupTracker = () => {
   const deta = Deta(DEV_PROJECT_KEY);
   const db = deta.Base("attendance");
   let date = Date();
   const tracker = db.put({
-    datetime: JSON.stringify(date),
+    datetime: date.toString(),
     name: user,
     people: [],
   });
@@ -19,8 +19,6 @@ export const getTrackers = async (event) => {
   const deta = Deta(DEV_PROJECT_KEY);
   const db = deta.Base("attendance");
   const trackers = await db.fetch({name: user});
-  setTimeout(() => {  console.log(trackers); }, 10000);
-  console.log (trackers);
   return trackers;
 };
 

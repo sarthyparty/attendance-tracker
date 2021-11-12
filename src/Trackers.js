@@ -5,13 +5,22 @@ import { useAsync } from "react-async";
 import Loading from "./Loading.js";
 
 function Trackers() {
-  const { data } = useAsync({ promiseFn: getTrackers });
+  var { data } = useAsync({ promiseFn: getTrackers });
 
+  
   if (data) {
+    console.log(new Date(data.items[0].datetime).toDateString() + ", Members Present: " + data.items[0].people.length);
+    for (let i = 0; i < data.items.length; i++) {
+      let date = new Date(data.items[i].datetime);
+      data.items[i].date = date.toDateString() + ": "+ data.items[i].people.length + " joined";
+      console.log(data.items[i].datetime);
+    }
+    
     console.log(data);
+
     return (
       <div class="trackers">
-        <h1>Attendance Trackers</h1>
+        <h1>My Attendance Trackers</h1>
         {data.items.map((tracker) => (
           <div class="cards">
             <div class="card-body">
@@ -20,7 +29,7 @@ function Trackers() {
                   pathname: "/dashboard/tracker/".concat(tracker.key),
                 }}
               >
-                {tracker.datetime}
+                {tracker.date}
               </NavLink>
             </div>
           </div>
@@ -30,7 +39,7 @@ function Trackers() {
   }
   return (
     <div class = "trackers">
-      <h1>Attendance Trackers</h1>
+      <h1>My Attendance Trackers</h1>
       <div class="loading">
         <Loading />
       </div>
