@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, NavLink, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, NavLink, Routes} from 'react-router-dom';
 
 import Login from './Login';
 import Dashboard from './Dashboard';
@@ -14,6 +14,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        {/* <Switch>
+          <Route exact path="/" component={Login} />
+        </Switch> */}
         <div>
           <div className="header">
             <NavLink exact activeClassName="active" to="/">Home</NavLink>
