@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+//import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBaZFKOQxlbldHUcTuhCVqsUcjaMjJKygM",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
+//const authRegister = getAuth()
 const db = app.firestore;
 export default firebase;
 
@@ -27,6 +29,20 @@ const signInWithUsernameAndPassword = async (username, password) => {
   }
 };
 
+// createUserWithEmailAndPassword(authRegister, email, password)
+//   .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // ..
+//   });
+
+
+
 const registerWithUsernameAndPassword = async (name, username, password) => {
   try {
     const res = await auth.createUserWithEmailAndPassword(username, password);
@@ -38,8 +54,8 @@ const registerWithUsernameAndPassword = async (name, username, password) => {
       username,
     });
   } catch (err) {
-    //console.error(err);
-    alert("User_Typed:"+username+" Password_Typed:"+password); //textbox isn't working properly
+    console.log(err.message);
+    alert(err.message); //textbox isn't working properly
   }
 };
 

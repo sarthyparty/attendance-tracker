@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Deta } from 'deta';
 import { useNavigate } from "react-router-dom";
-import { auth, registerWithUsernameAndPassword } from "./firebase";
+import { registerWithUsernameAndPassword } from "./firebase";
 
 import { DEV_PROJECT_KEY } from "./Keys.js"
 
@@ -17,6 +17,7 @@ function Register(props) {
   // handle button click of login form
     const handleRegister = () => {
         registerWithUsernameAndPassword(username, password)
+        //createUserWithEmailAndPassword(auth, username, password)
         setError(null);
         setLoading(false);
         navigate("/dashboard")

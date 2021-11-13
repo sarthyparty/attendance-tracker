@@ -6,8 +6,11 @@ import "./Login.css";
 
 function Login(props) {
     const navigate = useNavigate();
-    const username = useFormInput('');
-    const password = useFormInput('');
+    // const username = useFormInput('');
+    // const password = useFormInput('');
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     
@@ -41,10 +44,11 @@ function Login(props) {
             Username
             <br />
             <input 
-                type="text" {...username} autoComplete="new-username" 
+                type="text" //{...username}  
                 //className="login__textBox"
                 //value={username}
-                //onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
+                autoComplete="new-username"
                 //placeholder="Username"
             />
         </div>
@@ -52,10 +56,12 @@ function Login(props) {
             Password
             <br />
             <input 
-                type="password" {...password} autoComplete="new-password" 
+                type="password" //{...password} 
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="new-password" 
                 //className="login__textBox"
                 //value={password}
-                //onChange={(e) => setPassword(e.target.value)}
+                
                 //placeholder="Password"
             />
         </div>
