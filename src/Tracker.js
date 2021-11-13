@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { getTracker } from "./Utils.js";
 import { useAsync } from "react-async"; 
 import Loading from "./Loading.js";
+import Lock from "./Lock.js"
 
-function Info() {
+function Tracker() {
 
   const temp = window.location.href.split('/');
   const len = temp.length
@@ -17,7 +18,7 @@ function Info() {
     console.log(data);
     return (
       <div class = "info">
-        <h1>Join with code: {data.key}</h1>
+        <h1>Join with code: {data.key} <Lock lock = {data.isLocked} tracker = {data}/></h1>
         <br/>
         <h2>{data.people.length} people</h2>
         <br/>
@@ -34,21 +35,6 @@ function Info() {
   return <div class = "info">
     <Loading/>
   </div>;
-}
-
-class Tracker extends React.Component {
-  handleClick = () => {
-    // force a re-render
-    this.forceUpdate();
-  };
-  render(props) {
-    return (
-    <div>
-      {/* <button onClick={this.handleClick}>helo</button> */}
-      <Info/>
-    </div>
-    );
-  }
 }
 
 

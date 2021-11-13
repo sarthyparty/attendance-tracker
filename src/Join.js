@@ -19,10 +19,16 @@ function Join(props) {
     let msg = joinTracker(name, data);
     setError(msg);
     setLoading(false);
-    navigate("/");
+    if (msg == "Success") {
+      navigate("/");
+    }
   };
 
   if (data) {
+    console.log(data);
+    if (data.isLocked) {
+      return <h1>This tracker is locked.</h1>
+    }
     return (
       <div>
         Type your name:
