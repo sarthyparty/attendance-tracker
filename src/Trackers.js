@@ -9,11 +9,9 @@ function Trackers() {
 
   
   if (data) {
-    console.log(new Date(data.items[0].datetime).toDateString() + ", Members Present: " + data.items[0].people.length);
     for (let i = 0; i < data.items.length; i++) {
       let date = new Date(data.items[i].datetime);
       data.items[i].date = date.toDateString() + ": "+ data.items[i].people.length + " joined";
-      console.log(data.items[i].datetime);
     }
     
     console.log(data);
