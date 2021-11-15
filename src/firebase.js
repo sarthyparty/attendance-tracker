@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-//import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import 'firebase/compat/firestore';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBaZFKOQxlbldHUcTuhCVqsUcjaMjJKygM",
@@ -16,34 +16,20 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
-//const authRegister = getAuth()
-const db = app.firestore;
+const db = app.firestore();
 export default firebase;
 
 const signInWithUsernameAndPassword = async (username, password) => {
   try {
     await auth.signInWithEmailAndPassword(username, password);
-  } catch (err) { //login failed
-    console.error(err);
+  } catch (err) { 
+    console.log(err.message);
     alert(err.message);
   }
 };
 
-// createUserWithEmailAndPassword(authRegister, email, password)
-//   .then((userCredential) => {
-//     // Signed in 
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });
-
-
-
 const registerWithUsernameAndPassword = async (name, username, password) => {
+  var retVal = null;
   try {
     const res = await auth.createUserWithEmailAndPassword(username, password);
     const user = res.user;
@@ -52,11 +38,15 @@ const registerWithUsernameAndPassword = async (name, username, password) => {
       name,
       authProvider: "local",
       username,
+      password,
     });
   } catch (err) {
-    console.log(err.message);
-    alert(err.message); //textbox isn't working properly
+    //console.log(err.message);
+    //alert(err.message); 
+    retVal = err.message;
   }
+  //console.log(retVal);
+  return retVal;
 };
 
 //probs won't need this/just focus on logins

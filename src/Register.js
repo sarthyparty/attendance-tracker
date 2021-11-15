@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Deta } from 'deta';
 import { useNavigate } from "react-router-dom";
 import { registerWithUsernameAndPassword } from "./firebase";
 
@@ -7,20 +6,35 @@ import { DEV_PROJECT_KEY } from "./Keys.js"
 
 function Register(props) {
     const navigate = useNavigate();
-    //const username = useFormInput("blah");
-    //const password = useFormInput("blah");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(null);
+    //const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    var error = null;
 
   // handle button click of login form
     const handleRegister = () => {
-        registerWithUsernameAndPassword(username, password)
-        //createUserWithEmailAndPassword(auth, username, password)
-        setError(null);
-        setLoading(false);
-        navigate("/dashboard")
+        error = registerWithUsernameAndPassword(username, username, password);
+        setLoading(true);
+        error.then(meta => {
+            console.log(meta); 
+            if(meta==null){
+                navigate("/dashboard");
+            }else{
+                navigate("/login")
+            }
+        });
+        // if(error){
+        //     console.log(error);
+        // }
+        // setLoading(true);
+        // if(error==null){
+        //     navigate("/dashboard");
+        // }else{
+        //     navigate("/login")
+        // }
+        
+        //setError(err);
     }
 
     return (
@@ -46,7 +60,8 @@ function Register(props) {
                 autoComplete="new-password" 
             />
         </div>
-            {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
+            {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}
+            <br />
             <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
         </div>
   );
