@@ -1,6 +1,5 @@
 import React from "react"
 import Typewriter from "typewriter-effect";
-import {user} from "./Utils.js";
 
 class Welcome extends React.Component {
     render(props) {
@@ -9,7 +8,7 @@ class Welcome extends React.Component {
             <Typewriter
             onInit={(typewriter) => {
               typewriter
-              .typeString("Hello, " + user)
+              .typeString("Hello, " + localStorage.getItem("email"))
               .stop()
               .start();}}
             />
