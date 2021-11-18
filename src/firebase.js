@@ -10,9 +10,10 @@ const auth = app.auth();
 const db = app.firestore();
 export default firebase;
 
-const signInWithUsernameAndPassword = async (username, password) => {
+const signInWithUsernameAndPassword = async (email, password) => {
   try {
-    await auth.signInWithEmailAndPassword(username, password);
+    await auth.signInWithEmailAndPassword(email, password);
+    localStorage.setItem('email', email);
   } catch (err) { 
     return err.message;
   }

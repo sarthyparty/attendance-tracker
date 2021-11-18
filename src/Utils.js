@@ -1,7 +1,6 @@
 import { Deta } from "deta";
 import { DEV_PROJECT_KEY } from "./Keys";
 
-export var user = "User"
 const deta = Deta(DEV_PROJECT_KEY);
 const db = deta.Base("trackers");
 const db1 = deta.Base("appearances");
@@ -10,7 +9,7 @@ export const setupTracker = () => {
   let date = Date();
   const tracker = db.put({
     datetime: date.toString(),
-    user: user,
+    user: localStorage.getItem("email"),
     people: [],
     isLocked: false,
   });
@@ -18,7 +17,7 @@ export const setupTracker = () => {
 };
 
 export const getTrackers = async () => {
-  const trackers = await db.fetch({user: user});
+  const trackers = await db.fetch({user: localStorage.getItem("email")});
   return trackers;
 };
 
@@ -34,7 +33,7 @@ export const joinTracker = (name, tracker) => {
   const appearance = db1.put({
     tracker: tracker.key,
     user: tracker.user
-  }, (user+name.value));
+  }, (localStorage.getItem("email")+name.value));
   tracker.people.push(name.value);
   db.put(tracker)
   return "Success";

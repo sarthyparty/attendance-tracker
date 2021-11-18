@@ -1,12 +1,18 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Navbar from "./Navbar.js";
 
-function Dashboard(props) {
+function Dashboard(props) {;
   const navigate = useNavigate();
-
+  let email = localStorage.getItem("email");
+  if (email == "null") {
+    return <Navigate to={"/login"}/>
+  }
+  
   const handleLogout = () => {
+    localStorage.setItem("email", null)
     navigate("/login");
   };
 
