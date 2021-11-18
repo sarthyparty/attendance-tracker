@@ -51,12 +51,12 @@ export const removePerson = (tracker, person) => {
     tracker.people.splice(i, 1);
   }
   db.put(tracker);
-  db1.delete(person);
+  db1.delete(tracker.user+person);
 }
 
 export const removeTracker = (tracker) => {
   db.delete(tracker.key);
   for (let i = 0; i < tracker.people.length; i++) {
-    db1.delete(tracker.people[i]);
+    db1.delete(tracker.people[i]+tracker.user);
   }
 }

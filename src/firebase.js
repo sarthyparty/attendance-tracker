@@ -2,16 +2,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBaZFKOQxlbldHUcTuhCVqsUcjaMjJKygM",
-  authDomain: "attendance-tracker-138d3.firebaseapp.com",
-  projectId: "attendance-tracker-138d3",
-  storageBucket: "attendance-tracker-138d3.appspot.com",
-  messagingSenderId: "909985570730",
-  appId: "1:909985570730:web:2eaaa8e7ffe4aec789d5d3",
-  measurementId: "G-C0S1L8GTXN"
-};
+import { firebaseConfig } from "./Keys.js"
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
@@ -23,8 +14,7 @@ const signInWithUsernameAndPassword = async (username, password) => {
   try {
     await auth.signInWithEmailAndPassword(username, password);
   } catch (err) { 
-    console.log(err.message);
-    alert(err.message);
+    return err.message;
   }
 };
 

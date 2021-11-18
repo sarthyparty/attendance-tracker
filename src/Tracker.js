@@ -3,6 +3,8 @@ import { getTracker } from "./Utils.js";
 import { useAsync } from "react-async"; 
 import Loading from "./Loading.js";
 import Lock from "./Lock.js"
+import { FcCalendar, FcCancel } from "react-icons/fc";
+import Person from "./Delete.js";
 
 function Tracker() {
 
@@ -24,10 +26,9 @@ function Tracker() {
         <br/>
         {data.people.map((person) => (
         <div class="name">
-          <div class="name-body">
-            <p>{person}</p>
-          </div>
+          <Person person={person} tracker={data}/>
         </div>
+        
       ))}
       </div>
     );
