@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { auth, signInWithUsernameAndPassword } from "./firebase";
-//import { useAuthState } from "react-firebase-hooks/auth";
 import "./Login.css";
 
 function Login(props) {
@@ -21,8 +20,17 @@ function Login(props) {
         err.then(value => {
             if (value == null) {
                 navigate("/dashboard");
+            }else{
+                console.log(value);
+                switch(value){
+                    case "Firebase: The email address is badly formatted. (auth/invalid-email).":
+                        setError("Please type a valid email.");
+                        break;
+                    default:
+                        setError("Login failed");
+                        break;
+                }
             }
-            setError(value);
             setLoading(false);
         });
         

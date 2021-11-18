@@ -2,37 +2,50 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { registerWithUsernameAndPassword } from "./firebase";
 
+// function currentloginid() {
+//     return fetch('http://localhost/gaq/api/api.php?action=userid', {method: 'GET'})
+//       .then(response => response.json())
+//       .then(function(data) {
+//         var userid = JSON.parse(data);
+//         console.log(userid);
+//         return userid;
+//       })
+//   }
+  
+//   currentloginid().then(value => console.log(value));
+
 function Register(props) {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    //const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    var error = null;
+    const [error, setError] = useState(null);
 
   // handle button click of login form
     const handleRegister = () => {
-        error = registerWithUsernameAndPassword(username, username, password);
         setLoading(true);
-        error.then(meta => {
-            console.log(meta); 
-            if(meta==null){
-                navigate("/dashboard");
+        registerWithUsernameAndPassword(username, username, password)
+        .then(value => {
+            if (value == null) {
+                navigate("/login");
             }else{
-                navigate("/login")
+                switch(value){
+                    case "Firebase: The email address is badly formatted. (auth/invalid-email).":
+                        setError("Please type a valid email.");
+                        break;
+                    case "Firebase: The email address is already in use by another account. (auth/email-already-in-use).":
+                        setError("This email is already in use.");
+                        break;
+                    default:
+                        setError("Registering failed");
+                        break;
+                }
             }
+            
+            setLoading(false);
         });
-        // if(error){
-        //     console.log(error);
-        // }
-        // setLoading(true);
-        // if(error==null){
-        //     navigate("/dashboard");
-        // }else{
-        //     navigate("/login")
-        // }
-        
-        //setError(err);
+
+        setLoading(false);
     }
 
     return (
@@ -65,16 +78,16 @@ function Register(props) {
   );
 }
 
-const useFormInput = initialValue => {
-    const [value, setValue] = useState(initialValue);
+// const useFormInput = initialValue => {
+//     const [value, setValue] = useState(initialValue);
 
-    const handleChange = e => {
-        setValue(e.target.value);
-    };
-    return {
-        value,
-        onChange: handleChange
-    };
-};
+//     const handleChange = e => {
+//         setValue(e.target.value);
+//     };
+//     return {
+//         value,
+//         onChange: handleChange
+//     };
+// };
 
 export default Register;
