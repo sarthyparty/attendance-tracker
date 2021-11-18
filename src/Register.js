@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registerWithUsernameAndPassword } from "./firebase";
+import "./Register.css"
 
 // function currentloginid() {
 //     return fetch('http://localhost/gaq/api/api.php?action=userid', {method: 'GET'})
@@ -49,31 +50,33 @@ function Register(props) {
     }
 
     return (
-        <div className="register">
-            Register
-            <br />
-            <br />
-        <div>
-            Username
+        <div class="register">
+            <h1>Sign Up</h1>
+        <div class = "text">
             <br />
             <input 
+                placeholder="Email"
                 type="text" 
                 onChange={(e) => setUsername(e.target.value)}
                 autoComplete="new-username" 
             />
         </div>
-        <div style={{ marginTop: 10 }}>
-            Password
+        <div class = "text" style={{ marginTop: 10 }}>
             <br />
             <input 
+                placeholder="Password"
                 type="password"
                 onChange={(e) => setPassword(e.target.value)} 
                 autoComplete="new-password" 
             />
+            <br/><br/>
         </div>
             {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}
-            <br />
+            <div class = "button">
             <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
+            </div>
+            <br/>
+            <Link to="/login">Login</Link>
         </div>
   );
 }

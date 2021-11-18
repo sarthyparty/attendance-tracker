@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 function Login(props) {
@@ -12,7 +12,7 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <div class = "home">
       <br />
       <br />
       <div>
@@ -26,6 +26,7 @@ function Login(props) {
         onClick={join}
       />
       <br />
+      <Link to="/login">Login</Link>
     </div>
   );
 }

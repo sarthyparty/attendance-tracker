@@ -1,10 +1,10 @@
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F0F7EE;
+  background: #F0F7EE;
 }
 
 code {

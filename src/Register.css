@@ -1,4 +1,4 @@
-.login {
+.register {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -6,11 +6,11 @@
   padding: 10%;
 }
 
-.login input {
+.register input {
   width: 25%;
 }
 
-.login h1 {
+.register h1 {
   color: #161925;
   font-variant: small-caps;
   font-weight: bolder;
@@ -44,7 +44,7 @@
 }
 
 
-.login::before {
+.register::before {
   content: '';
   display: block;
   position: absolute;
@@ -53,8 +53,4 @@
   height: 200%;
   transform: translate(50%, -20%);
   background-color: #161925;
-}
-
-.link {
-  text-align: center;
 }

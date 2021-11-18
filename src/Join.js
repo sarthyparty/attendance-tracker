@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getTracker, joinTracker} from "./Utils.js";
 import { useAsync } from "react-async";
+import Loading from "./Loading.js";
 
 function Join(props) {
   const navigate = useNavigate();
@@ -30,12 +31,12 @@ function Join(props) {
       return <h1>This tracker is locked.</h1>
     }
     return (
-      <div>
+      <div class = "join">
         Type your name:
         <br />
         <br />
         <div>
-          Name
+          <h1>Type your name! Please type the same one everytime</h1>
           <br />
           <input type="text" {...name} autoComplete="new-password" />
         </div>
@@ -56,7 +57,7 @@ function Join(props) {
       </div>
     );
   }
-  return <h1>Loading...</h1>
+  return <Loading/>
 }
 
 const useFormInput = (initialValue) => {
