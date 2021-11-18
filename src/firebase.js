@@ -14,8 +14,7 @@ const signInWithUsernameAndPassword = async (username, password) => {
   try {
     await auth.signInWithEmailAndPassword(username, password);
   } catch (err) { 
-    console.log(err.message);
-    alert(err.message);
+    return err.message;
   }
 };
 

@@ -12,13 +12,20 @@ function Login(props) {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    var err = undefined;
 
   // handle button click of login form
     const handleLogin = () => {
-        signInWithUsernameAndPassword(username, password);
-        setError("login failed");
         setLoading(true);
-        navigate("/dashboard");
+        const err = signInWithUsernameAndPassword(username, password);
+        err.then(value => {
+            if (value == null) {
+                navigate("/dashboard");
+            }
+            setError(value);
+            setLoading(false);
+        });
+        
     }
 
     return (
