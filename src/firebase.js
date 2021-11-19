@@ -13,7 +13,7 @@ export default firebase;
 const signInWithUsernameAndPassword = async (email, password) => {
   try {
     await auth.signInWithEmailAndPassword(email, password);
-    localStorage.setItem('email', email.split("@")[0]);
+    localStorage.setItem('email', email);
   } catch (err) { 
     return err.message;
   }

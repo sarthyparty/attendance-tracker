@@ -7,7 +7,7 @@ import Navbar from "./Navbar.js";
 function Dashboard(props) {;
   const navigate = useNavigate();
   let email = localStorage.getItem("email");
-  if (email == "null") {
+  if (email == "null" || email == null) {
     return <Navigate to={"/login"}/>
   }
   

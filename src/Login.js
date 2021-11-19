@@ -13,7 +13,7 @@ function Login(props) {
   const [loading, setLoading] = useState(false);
   var err = undefined;
   document.body.style.overflow = "hidden";
-  if (localStorage.getItem("email") != "null") {
+  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null) {
     return <Navigate to="/dashboard"/>
 }
 

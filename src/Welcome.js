@@ -8,7 +8,7 @@ class Welcome extends React.Component {
             <Typewriter
             onInit={(typewriter) => {
               typewriter
-              .typeString("Hello, " + localStorage.getItem("email"))
+              .typeString("Hello, " + localStorage.getItem("email").split("@")[0])
               .stop()
               .start();}}
             />
