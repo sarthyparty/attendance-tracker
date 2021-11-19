@@ -34,7 +34,7 @@ export const joinTracker = (name, tracker) => {
   const appearance = db1.put({
     tracker: tracker.key,
     user: tracker.user
-  }, (localStorage.getItem("email")+name.value));
+  }, (tracker.user+name.value));
   tracker.people.push(name.value);
   db.put(tracker)
   return "Success";
