@@ -43,6 +43,10 @@
   text-align: center;
 }
 
+.button input:hover {
+  color: #91eb7a;
+}
+
 
 .login::before {
   content: '';

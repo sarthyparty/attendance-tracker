@@ -26,6 +26,10 @@
   color: #161925;
 }
 
+.button input:hover {
+  color: #91eb7a;
+}
+
 .button input{
   background-color: #23395B;
   font-size: x-large;
