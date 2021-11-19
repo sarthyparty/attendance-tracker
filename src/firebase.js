@@ -19,14 +19,13 @@ const signInWithUsernameAndPassword = async (email, password) => {
   }
 };
 
-const registerWithUsernameAndPassword = async (name, username, password) => {
+const registerWithUsernameAndPassword = async (username, password) => {
   var retVal = null;
   try {
     const res = await auth.createUserWithEmailAndPassword(username, password);
     const user = res.user;
     await db.collection("users").add({
       uid: user.uid,
-      name,
       authProvider: "local",
       username,
       password,

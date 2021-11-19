@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import { registerWithUsernameAndPassword } from "./firebase";
 import "./Register.css"
+import { createUser } from "./Utils.js"
 
 // function currentloginid() {
 //     return fetch('http://localhost/gaq/api/api.php?action=userid', {method: 'GET'})
@@ -25,9 +26,10 @@ function Register(props) {
   // handle button click of login form
     const handleRegister = () => {
         setLoading(true);
-        registerWithUsernameAndPassword(username, username, password)
+        registerWithUsernameAndPassword(username, password)
         .then(value => {
             if (value == null) {
+                createUser(username);
                 navigate("/login");
             }else{
                 switch(value){

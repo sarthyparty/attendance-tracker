@@ -5,6 +5,18 @@ import { nanoid } from "nanoid";
 const deta = Deta(DEV_PROJECT_KEY);
 const db = deta.Base("trackers");
 const db1 = deta.Base("appearances");
+const db2 = deta.Base("users");
+
+export const createUser = (email) => {
+  db2.insert({
+    members: []
+  },email)
+}
+
+export const getUser = async ({email}) => {
+  const user = await db2.get(email);
+  return user;
+}
 
 export const setupTracker = () => {
   let date = Date();
@@ -27,15 +39,20 @@ export const getTracker = async ({id}) => {
   return tracker;
 };
 
-export const joinTracker = (name, tracker) => {
-  if (tracker.people.includes(name.value)) {
+export const joinTracker = (name, tracker, user) => {
+  console.log(name);
+  if (tracker.people.includes(name)) {
     return "You have already joined this tracker."
   }
-  const appearance = db1.put({
+  if (!user.members.includes(name)) {
+    user.members.push(name);
+    db2.put(user);
+  }
+  db1.put({
     tracker: tracker.key,
     user: tracker.user
-  }, (tracker.user+name.value));
-  tracker.people.push(name.value);
+  }, (tracker.user+name));
+  tracker.people.push(name);
   db.put(tracker)
   return "Success";
 };
