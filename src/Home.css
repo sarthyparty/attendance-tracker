@@ -1,0 +1,65 @@
+.home {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+  }
+  
+  .home input {
+    width: 100%;
+  }
+  
+  .home h1 {
+    color: #161925;
+    font-variant: small-caps;
+    font-weight: bolder;
+  }
+  
+  .label {
+    width: 300;
+    height: 200;
+    font-size: xxx-large;
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  .box input {
+    background-color: #C4D7F2;
+    font-size: x-large;
+    padding: 1%;
+    width: 600;
+    height: 100;
+    line-height: 60px;
+    border-radius: 50px;
+    border-color: #AFDEDC;
+    border-width: 5px;
+    color: #161925;
+  }
+  
+  .join_button input{
+    background-color: #23395B;
+    font-size: xxx-large;
+    width: 100;
+    height: 100;
+    line-height: 60px;
+    padding: 1%;
+    border-radius: 50px;
+    border-color: #23395B;
+    border-width: 0px;
+    color: #ffffff;
+    font-weight: bolder;
+    
+  }
+  
+  
+  
+  .button input:hover {
+    color: #ff0000;
+  }
+  
+  .link {
+    text-align: center;
+  }
+  
