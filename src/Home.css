@@ -54,12 +54,11 @@
   }
   
   
-  
-  .button input:hover {
-    color: #ff0000;
-  }
-  
   .link {
     text-align: center;
+  }
+
+  .join_button input:hover {
+    color: #91eb7a;
   }
   

@@ -1,10 +1,10 @@
-
 body {
   margin: 0;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #F0F7EE;
+  background: #f0f7ee;
 }
 
 code {
@@ -13,7 +13,7 @@ code {
 }
 
 .navbar {
-  background-color: #23395B;
+  background-color: #23395b;
   height: 80px;
   display: flex;
   justify-content: start;
@@ -24,11 +24,11 @@ code {
   margin-left: 2rem;
   font-size: 2rem;
   background: none;
-  color: #F0F7EE;
+  color: #f0f7ee;
 }
 
 .nav-menu {
-  background-color: #23395B;
+  background-color: #23395b;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -54,7 +54,7 @@ code {
 
 .nav-text a {
   text-decoration: none;
-  color: #F0F7EE;
+  color: #f0f7ee;
   font-size: xx-large;
   width: 95%;
   height: 100%;
@@ -94,26 +94,26 @@ span {
   text-align: center;
 }
 
-.trackers h1{
+.trackers h1 {
   padding: 1%;
   padding-top: 5%;
   font-weight: normal;
 }
 
-.dashboard input{
-  background-color: #C4D7F2;
+.dashboard input {
+  background-color: #c4d7f2;
   font-size: x-large;
   padding: 1%;
   border-radius: 10px;
-  border-color: #AFDEDC;
+  border-color: #afdedc;
   border-width: 5px;
   color: #161925;
   font-weight: bolder;
   margin: 1%;
 }
 
-.dashboard input:hover{
-  background-color: #91A8A4;
+.dashboard input:hover {
+  background-color: #91a8a4;
 }
 
 .dashboard {
@@ -127,8 +127,8 @@ span {
 
 .card-body a {
   padding: 0.25%;
-  border-style:groove;
-  border-color: #AFDEDC;
+  border-style: groove;
+  border-color: #afdedc;
   border-radius: 10px;
   font-size: large;
   text-decoration: none;
@@ -136,12 +136,12 @@ span {
 }
 
 .card-body a:hover {
-  background-color: #AFDEDC;
+  background-color: #afdedc;
 }
 
 .info h1 {
   font-size: 250%;
-  color: #5C164E;
+  color: #5c164e;
 }
 .info {
   padding-top: 5%;
@@ -176,9 +176,8 @@ span {
 }
 
 .card-body button:hover {
-  background-color: #AFDEDC;
+  background-color: #afdedc;
 }
-
 
 table {
   border: 1px solid black;
@@ -204,3 +203,32 @@ th {
 .deleted {
   visibility: hidden;
 }
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15%;
+}
+
+.button button{
+  background-color: #23395b;
+  font-size: x-large;
+  width: 100;
+  height: 100;
+  line-height: 60px;
+  border-radius: 50px;
+  border-color: #23395b;
+  border-width: 0px;
+  color: #ffffff;
+  font-weight: bolder;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.button button:hover {
+  color: #91eb7a;
+}
+

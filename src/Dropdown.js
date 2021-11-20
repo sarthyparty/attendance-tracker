@@ -27,7 +27,7 @@ function Dropdown(props) {
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     if (e.value) {
       setOption(e.value);
       console.log(e.value);
@@ -38,11 +38,12 @@ function Dropdown(props) {
   if (data) {
     var options = [];
     for (let i = 0; i < data.members.length; i++) {
-      options.push({ value: data.members[i], label: data.members[i]});
+      options.push({ value: data.members[i], label: data.members[i] });
     }
     return (
-      <div>
+      <div class="dropdown">
         <h1>Type your name!</h1>
+        <br />
         <Creatable options={options} onChange={handleChange} />
         {error && (
           <>
@@ -50,11 +51,18 @@ function Dropdown(props) {
             <br />
           </>
         )}
-        <button onClick={handleJoin}>Record My Attendance</button>
+        <br />
+        <div class="button">
+          <button onClick={handleJoin}>Mark Me Present!</button>
+        </div>
       </div>
     );
   }
-  return <Loading/>;
+  return (
+    <div class="Loading">
+      <Loading />
+    </div>
+  );
 }
 
 export default Dropdown;
