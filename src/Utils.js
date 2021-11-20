@@ -74,7 +74,8 @@ export const removePerson = (tracker, person) => {
 export const removeTracker = (tracker) => {
   db.delete(tracker.key);
   for (let i = 0; i < tracker.people.length; i++) {
-    db1.delete(tracker.people[i]+tracker.user);
+    console.log(tracker.people[i]+tracker.user)
+    db1.delete(tracker.user+tracker.people[i]);
   }
 }
 

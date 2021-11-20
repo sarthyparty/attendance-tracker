@@ -169,6 +169,15 @@ span {
   background-color: transparent;
 }
 
+.card-body button {
+  border-width: 0px;
+  background-color: transparent;
+  border-radius: 50px;
+}
+
+.card-body button:hover {
+  background-color: #AFDEDC;
+}
 
 
 table {
