@@ -47,11 +47,11 @@ function Dropdown(props) {
         <Creatable options={options} onChange={handleChange} />
         {error && (
           <>
+            <br/>
             <small style={{ color: color }}>{error}</small>
-            <br />
           </>
         )}
-        <br />
+        <br/>
         <div class="button">
           <button onClick={handleJoin}>Mark Me Present!</button>
         </div>

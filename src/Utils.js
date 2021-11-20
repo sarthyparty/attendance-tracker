@@ -40,7 +40,12 @@ export const getTracker = async ({id}) => {
 };
 
 export const joinTracker = (name, tracker, user) => {
-  console.log(name);
+  if (name == "" || name == null) {
+    return "Please enter a valid name.";
+  }
+  if (name.split(" ").length < 2) {
+    return "Please enter a first and last name."
+  }
   if (tracker.people.includes(name)) {
     return "You have already joined this tracker."
   }
