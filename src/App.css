@@ -232,3 +232,14 @@ th {
   color: #91eb7a;
 }
 
+.icons {
+  font-size: 300%;
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  margin-left: 1%;
+  margin-right: 1%;
+}
+

@@ -43,7 +43,7 @@ export const joinTracker = (name, tracker, user) => {
   if (name == "" || name == null) {
     return "Please enter a valid name.";
   }
-  if (name.split(" ").length < 2) {
+  if (name.split(" ").length != 2) {
     return "Please enter a first and last name."
   }
   if (tracker.people.includes(name)) {
