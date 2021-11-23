@@ -31,25 +31,25 @@ const registerWithUsernameAndPassword = async (username, password) => {
       password,
     });
   } catch (err) {
-    //console.log(err.message);
-    //alert(err.message); 
     retVal = err.message;
   }
-  //console.log(retVal);
   return retVal;
 };
 
-//probs won't need this/just focus on logins
-const logout = () => { 
-  auth.signOut();
-};
+const resetPassword = async(username) => {
+  try {
+    await auth.sendPasswordResetEmail(username);
+  } catch (err) {
+      console.log(err.message);
+  }
+}
 
 export {
   auth,
   db,
   signInWithUsernameAndPassword,
   registerWithUsernameAndPassword,
-  logout,
+  resetPassword
 };
 
 

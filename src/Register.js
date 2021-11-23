@@ -4,18 +4,6 @@ import { registerWithUsernameAndPassword } from "./firebase";
 import "./Register.css"
 import { createUser } from "./Utils.js"
 
-// function currentloginid() {
-//     return fetch('http://localhost/gaq/api/api.php?action=userid', {method: 'GET'})
-//       .then(response => response.json())
-//       .then(function(data) {
-//         var userid = JSON.parse(data);
-//         console.log(userid);
-//         return userid;
-//       })
-//   }
-  
-//   currentloginid().then(value => console.log(value));
-
 function Register(props) {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
