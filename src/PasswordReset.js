@@ -8,7 +8,8 @@ function PasswordReset(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState("A password reset link will be sent to your email...");
+    const [color, setColor] = useState('green');
 
   // handle button click of login form
     const handlePWReset = () => {
@@ -16,20 +17,21 @@ function PasswordReset(props) {
         resetPassword(username)
         .then(value => {
             if (value == null) {
-                navigate("/login");
+                navigate("/successful-reset");
             }else{
+                setColor('red')
                 console.log(value);
-                // switch(value){
-                //     case "Firebase: The email address is badly formatted. (auth/invalid-email).":
-                //         setError("Please type a valid email.");
-                //         break;
-                //     case "Firebase: The email address is already in use by another account. (auth/email-already-in-use).":
-                //         setError("This email is already in use.");
-                //         break;
-                //     default:
-                //         setError("Registering failed");
-                //         break;
-                // }
+                switch(value){
+                    case "Firebase: The email address is badly formatted. (auth/invalid-email).":
+                        setError("Please type a valid email.");
+                        break;
+                    case "Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).":
+                        setError("This email is not on file.");
+                        break;
+                    default:
+                        setError("Registering failed");
+                        break;
+                }
             }
             
             setLoading(false);
@@ -41,7 +43,6 @@ function PasswordReset(props) {
     return (
         <div class="register">
             <h1>Reset Password</h1>
-            <label>Reset password link sent will be sent to your email . . .</label>
         <div class = "text">
             <br />
             <input 
@@ -51,9 +52,14 @@ function PasswordReset(props) {
                 autoComplete="new-username" 
             /><br /><br />
         </div>
-            {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}
+            {error && <>
+                <small style={{ color: color }}>
+                    {error}
+                </small>
+                <br />
+            </>}
             <div class = "button">
-            <input type="button" value={loading ? 'Loading...' : 'Password'} onClick={handlePWReset} disabled={loading} /><br />
+            <input type="button" value={loading ? 'Loading...' : 'Reset Password'} onClick={handlePWReset} disabled={loading} /><br />
             </div>
             <br/>
             <Link to="/login">Login</Link>

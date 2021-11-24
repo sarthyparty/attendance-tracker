@@ -37,11 +37,12 @@ const registerWithUsernameAndPassword = async (username, password) => {
 };
 
 const resetPassword = async(username) => {
+  var retval = null;
   try {
     await auth.sendPasswordResetEmail(username);
   } catch (err) {
-      console.log(err.message);
-  }
+      retval = err.message;
+  }return retval;
 }
 
 export {
