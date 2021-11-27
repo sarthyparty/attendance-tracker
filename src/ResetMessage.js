@@ -6,8 +6,8 @@ import "./Register.css"
 function ResetMessage(props){
     return (
         <div class="register">
-            <h1>Password reset link sent to your email!</h1>
-            <h1>Follow the instructions the link provides</h1>
+            <h1>Success!</h1>
+            <p>Password reset instructions sent to your email.</p>
             <br/>
             <br/>
             <Link to="/login">Login</Link>

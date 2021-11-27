@@ -90,3 +90,8 @@ export const getAppearances = () => {
   });
   
 }
+
+export const getMembers = async() => {
+  const user = await db2.get(localStorage.getItem("email"));
+  return user;
+}

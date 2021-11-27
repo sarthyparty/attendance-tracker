@@ -1,24 +1,30 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Spinner } from "react-bootstrap";
+import Loading from "./Loading.js";
+import { getMembers } from "./Utils.js";
+import { useAsync } from "react-async";
+import { Link } from "react-router-dom";
 
 function Stats(props) {
-  
-  return (
-    <div class="stats">
+
+  const { data } = useAsync({promiseFn: getMembers});
+
+  if (data) {
+    return (
       <div class="stats">
-        <h1>This part is still being developed.</h1>
-        <br />
-        <br />
-        <Spinner animation="grow" variant="danger" />
-        <Spinner animation="grow" variant="danger" />
-        <br />
-        <br />
-        <br />
-        <h1>It should be done by next week.</h1>
+      <h1>Stats</h1>
+        {data.members.map((person) => (
+          <div class="cards">
+            <div class="card-body">
+              <Link to={"/dashboard/"+person}>{person}</Link>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  );
+    );
+  } 
+  return <Loading/>;
+  
 }
 
 export default Stats;
