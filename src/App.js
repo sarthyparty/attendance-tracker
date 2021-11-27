@@ -12,6 +12,8 @@ import Trackers from "./Trackers.js";
 import Join from "./Join.js"
 import Welcome from "./Welcome.js";
 import Create from "./CreateTracker.js"
+import PasswordReset from "./PasswordReset";
+import ResetMessage from "./ResetMessage";
  
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
               <Route path="login" element={<Login/>} />
               <Route path="join/:id" element={<Join/>} />
               <Route path="register" element={<Register/>} />
+              <Route path="reset-password" element={<PasswordReset/>} />
+              <Route path="successful-reset" element={<ResetMessage/>} />
               <Route path="dashboard" element={<Dashboard/>}>
                 <Route path="" element={<Welcome/>} />
                 <Route path="create" element={<Create/>} />

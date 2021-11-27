@@ -4,17 +4,21 @@ import { registerWithUsernameAndPassword } from "./firebase";
 import "./Register.css"
 import { createUser } from "./Utils.js"
 
-// function currentloginid() {
-//     return fetch('http://localhost/gaq/api/api.php?action=userid', {method: 'GET'})
-//       .then(response => response.json())
-//       .then(function(data) {
-//         var userid = JSON.parse(data);
-//         console.log(userid);
-//         return userid;
-//       })
-//   }
-  
-//   currentloginid().then(value => console.log(value));
+//At least 6 characters & must contain letters and numbers
+function containsLettersAndNumbers(password){
+    var letterCount = 0;
+    var numCount = 0;
+    for(var i=0; i<password.length; i++) {
+        if("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".includes(password.charAt(i))){
+            letterCount++;
+        }
+        if("0123456789".includes(password.charAt(i))){
+            numCount++;
+        }
+    }
+    console.log("letters: "+letterCount+"     numbers: "+numCount);
+    return letterCount>0 && numCount>0;
+}
 
 function Register(props) {
     const navigate = useNavigate();
@@ -23,31 +27,40 @@ function Register(props) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+
+
   // handle button click of login form
     const handleRegister = () => {
         setLoading(true);
-        registerWithUsernameAndPassword(username, password)
-        .then(value => {
-            if (value == null) {
-                createUser(username);
-                navigate("/login");
-            }else{
-                switch(value){
-                    case "Firebase: The email address is badly formatted. (auth/invalid-email).":
-                        setError("Please type a valid email.");
-                        break;
-                    case "Firebase: The email address is already in use by another account. (auth/email-already-in-use).":
-                        setError("This email is already in use.");
-                        break;
-                    default:
-                        setError("Registering failed");
-                        break;
-                }
-            }
-            
-            setLoading(false);
-        });
 
+        if(password.length < 6 || !containsLettersAndNumbers(password)){
+            console.log(error+" "+password);
+            setError("Password must be at least 6 characters and must contain letters and numbers");
+        }else{
+            setError(null);
+            registerWithUsernameAndPassword(username, password)
+            .then(value => {
+                if (value == null) {
+                    createUser(username);
+                    navigate("/login");
+                }else{
+                    switch(value){
+                        case "Firebase: The email address is badly formatted. (auth/invalid-email).":
+                            setError("Please type a valid email.");
+                            break;
+                        case "Firebase: The email address is already in use by another account. (auth/email-already-in-use).":
+                            setError("This email is already in use.");
+                            break;
+                        default:
+                            setError("Registering failed");
+                            break;
+                    }
+                }
+            
+                setLoading(false);
+            });
+        }
+        
         setLoading(false);
     }
 
@@ -82,17 +95,5 @@ function Register(props) {
         </div>
   );
 }
-
-// const useFormInput = initialValue => {
-//     const [value, setValue] = useState(initialValue);
-
-//     const handleChange = e => {
-//         setValue(e.target.value);
-//     };
-//     return {
-//         value,
-//         onChange: handleChange
-//     };
-// };
 
 export default Register;

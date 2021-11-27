@@ -68,7 +68,7 @@ function Login(props) {
             <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
             </div>
             <br/>
-            <Link to="/register">Sign Up</Link>
+            <Link to="/register">Sign Up</Link> <Link to="/reset-password">Reset Password</Link>
       </div>
     </div>
   );
