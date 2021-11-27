@@ -6,6 +6,9 @@ import Loading from "./Loading.js";
 import { FcCancel } from "react-icons/fc";
 
 function Trackers() {
+
+  document.title = "Trackers";
+
   var { data } = useAsync({ promiseFn: getTrackers });
 
   const deleteTracker = (tracker) => {

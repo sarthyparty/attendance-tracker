@@ -12,6 +12,8 @@ function Join(props) {
   const id = temp[len - 1];
   const { data } = useAsync({ promiseFn: getTracker, id });
 
+  document.title = "Join";
+
   if (data) {
     if (data.isLocked) {
       return <h1>This tracker is locked.</h1>

@@ -4,6 +4,9 @@ import { auth, signInWithUsernameAndPassword } from "./firebase";
 import "./Login.css";
 
 function Login(props) {
+
+  document.title = "Login";
+
   const navigate = useNavigate();
   // const username = useFormInput('');
   // const password = useFormInput('');
@@ -14,6 +17,7 @@ function Login(props) {
   var err = undefined;
   document.body.style.overflow = "hidden";
   if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null) {
+    document.tile = "Dashboard";
     return <Navigate to="/dashboard"/>
 }
 

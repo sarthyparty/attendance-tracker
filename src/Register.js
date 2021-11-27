@@ -21,6 +21,7 @@ function containsLettersAndNumbers(password){
 }
 
 function Register(props) {
+    document.title = "Register";
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

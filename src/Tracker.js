@@ -8,6 +8,7 @@ import Person from "./Delete.js";
 import { CSVLink } from "react-csv";
 
 function Tracker() {
+
   const temp = window.location.href.split("/");
   const len = temp.length;
   const id = temp[len - 1];
@@ -28,6 +29,7 @@ function Tracker() {
       csvStuff.push({ firstName: names[0], lastName: names[1] });
     }
     let date = new Date(data.datetime);
+    document.title = date.toDateString();
     const csvReport = {
       data: csvStuff,
       headers: headers,

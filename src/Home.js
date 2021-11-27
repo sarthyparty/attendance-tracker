@@ -13,6 +13,8 @@ function Login(props) {
     navigate("/join/" + code.value)
   };
 
+  document.title = "Home";
+
   return (
     <div class = "home">
       <br />
