@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
-import { auth, signInWithUsernameAndPassword } from "./firebase";
+import { signInWithUsernameAndPassword } from "./firebase";
 import "./Login.css";
 
 function Login(props) {
   const navigate = useNavigate();
-  // const username = useFormInput('');
-  // const password = useFormInput('');
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   var err = undefined;
+
   document.body.style.overflow = "hidden";
-  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null) {
+  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null){
     return <Navigate to="/dashboard"/>
-}
+  }
 
   // handle button click of login form
   const handleLogin = () => {
@@ -23,7 +22,7 @@ function Login(props) {
     const err = signInWithUsernameAndPassword(username, password);
     err.then((value) => {
       if (value == null) {
-        navigate("/dashboard");
+        navigate("/dashboard"); 
       } else {
         console.log(value);
         switch (value) {
@@ -73,17 +72,5 @@ function Login(props) {
     </div>
   );
 }
-
-const useFormInput = (initialValue) => {
-  const [value, setValue] = useState(initialValue);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-  return {
-    value,
-    onChange: handleChange,
-  };
-};
 
 export default Login;
