@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link, Navigate } from "react-router-dom";
-import { signInWithUsernameAndPassword } from "./firebase";
+import { auth, signInWithUsernameAndPassword } from "./firebase";
 import "./Login.css";
 
 function Login(props) {
@@ -12,7 +12,7 @@ function Login(props) {
   var err = undefined;
 
   document.body.style.overflow = "hidden";
-  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null){
+  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null && auth.currentUser.emailVerified){
     return <Navigate to="/dashboard"/>
   }
 
@@ -22,7 +22,11 @@ function Login(props) {
     const err = signInWithUsernameAndPassword(username, password);
     err.then((value) => {
       if (value == null) {
-        navigate("/dashboard"); 
+        if(auth.currentUser.emailVerified){
+          navigate("/dashboard"); 
+        }else{
+          setError("Please verify your email. Verification instructions were sent to your email.");
+        }
       } else {
         console.log(value);
         switch (value) {
