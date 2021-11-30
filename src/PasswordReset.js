@@ -14,32 +14,34 @@ function PasswordReset(props) {
   // handle button click of login form
     const handlePWReset = () => {
         setLoading(true);
-        resetPassword(username)
-        .then(value => {
-            if (value == null) {
-                if(auth.currentUser.emailVerified){
-                  navigate("/successful-reset"); 
+        if(auth.currentUser!=null && auth.currentUser.emailVerified){
+            resetPassword(username)
+            .then(value => {
+                if (value == null) {
+                    navigate("/successful-reset");
                 }else{
-                  setError("Please verify your email. Verification instructions were sent to your email.");
+                    setColor('red')
+                    console.log(value);
+                    switch(value){
+                        case "Firebase: The email address is badly formatted. (auth/invalid-email).":
+                            setError("Please type a valid email.");
+                            break;
+                        case "Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).":
+                            setError("This email is not on file.");
+                            break;
+                        default:
+                            setError("Registering failed");
+                            break;
+                    }
                 }
-            }else{
-                setColor('red')
-                console.log(value);
-                switch(value){
-                    case "Firebase: The email address is badly formatted. (auth/invalid-email).":
-                        setError("Please type a valid email.");
-                        break;
-                    case "Firebase: There is no user record corresponding to this identifier. The user may have been deleted. (auth/user-not-found).":
-                        setError("This email is not on file.");
-                        break;
-                    default:
-                        setError("Registering failed");
-                        break;
-                }
-            }
             
-            setLoading(false);
-        });
+                setLoading(false);
+            });
+        }else{
+            setColor('red');
+            setError("Please verify your email. Verification instructions were sent to your email.");
+        }
+        
 
         setLoading(false);
     }
