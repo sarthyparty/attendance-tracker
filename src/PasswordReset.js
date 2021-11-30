@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
-import {resetPassword} from "./firebase";
+import {auth, resetPassword} from "./firebase";
 import "./Register.css"
 
 function PasswordReset(props) {
@@ -17,7 +17,11 @@ function PasswordReset(props) {
         resetPassword(username)
         .then(value => {
             if (value == null) {
-                navigate("/successful-reset");
+                if(auth.currentUser.emailVerified){
+                  navigate("/successful-reset"); 
+                }else{
+                  setError("Please verify your email. Verification instructions were sent to your email.");
+                }
             }else{
                 setColor('red')
                 console.log(value);

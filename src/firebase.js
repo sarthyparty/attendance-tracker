@@ -45,12 +45,23 @@ const resetPassword = async(username) => {
   }return retval;
 }
 
+const sendVerificationEmail = async() => {
+  var retVal = null;
+  var user = auth.currentUser;
+  try {
+    user.sendEmailVerification();
+  } catch (err) {
+    retVal = err.message;
+  }return retVal;
+}
+
 export {
   auth,
   db,
   signInWithUsernameAndPassword,
   registerWithUsernameAndPassword,
-  resetPassword
+  resetPassword,
+  sendVerificationEmail
 };
 
 

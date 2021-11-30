@@ -8,18 +8,17 @@ function Login(props) {
   document.title = "Login";
 
   const navigate = useNavigate();
-  // const username = useFormInput('');
-  // const password = useFormInput('');
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   var err = undefined;
+
   document.body.style.overflow = "hidden";
-  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null) {
+  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null && auth.currentUser.emailVerified){
     document.tile = "Dashboard";
     return <Navigate to="/dashboard"/>
-}
+  }
 
   // handle button click of login form
   const handleLogin = () => {
@@ -27,7 +26,11 @@ function Login(props) {
     const err = signInWithUsernameAndPassword(username, password);
     err.then((value) => {
       if (value == null) {
-        navigate("/dashboard");
+        if(auth.currentUser.emailVerified){
+          navigate("/dashboard"); 
+        }else{
+          setError("Please verify your email. Verification instructions were sent to your email.");
+        }
       } else {
         console.log(value);
         switch (value) {
@@ -78,17 +81,5 @@ function Login(props) {
     </div>
   );
 }
-
-const useFormInput = (initialValue) => {
-  const [value, setValue] = useState(initialValue);
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-  return {
-    value,
-    onChange: handleChange,
-  };
-};
 
 export default Login;
