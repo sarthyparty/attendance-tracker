@@ -8,7 +8,7 @@ function PasswordReset(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("A password reset link will be sent to your email...");
+    const [error, setError] = useState("A password reset link will be sent tnpm sto your email...");
     const [color, setColor] = useState('green');
 
   // handle button click of login form
