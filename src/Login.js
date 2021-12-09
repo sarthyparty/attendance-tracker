@@ -15,7 +15,7 @@ function Login(props) {
   var err = undefined;
 
   document.body.style.overflow = "hidden";
-  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null && auth.currentUser.emailVerified){
+  if (localStorage.getItem("email") != "null" && localStorage.getItem("email") != null && auth.currentUser!=null && auth.currentUser.emailVerified){
     document.tile = "Dashboard";
     return <Navigate to="/dashboard"/>
   }

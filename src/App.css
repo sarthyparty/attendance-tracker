@@ -145,6 +145,8 @@ span {
 }
 .info {
   padding-top: 5%;
+  align-self: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -241,5 +243,50 @@ th {
 .icon {
   margin-left: 1%;
   margin-right: 1%;
+}
+
+.people {
+  text-align: center;
+  justify-content: center;
+  width: fit-content;
+  margin: auto;
+  padding: 1%;
+}
+
+.present {
+  width: fit-content;
+  margin: auto;
+  border-width: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10%;
+  justify-content: center;
+}
+
+.present input {
+  border-top-width: 1px;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 2px;
+  border-radius: 10px;
+  padding: 1%;
+
+}
+
+.present input:hover {
+  color: blue;
+}
+
+.selected input{
+  background-color: #afdedc;
+  
+}
+
+.not-selected input{
+  background-color: transparent;
+}
+
+.list {
+  font-size: 0px;
 }
 

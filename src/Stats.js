@@ -13,13 +13,13 @@ function Stats(props) {
     return (
       <div class="stats">
       <h1>This page is temporarily unavailable.</h1>
-        {data.members.map((person) => (
-          {/* <div class="cards">
+        {/* {data.members.map((person) => (
+          <div class="cards">
             <div class="card-body">
               <Link to={"/dashboard/"+person}>{person}</Link>
             </div>
-          </div> */}
-        ))}
+          </div>
+        ))} */}
       </div>
     );
   } 
