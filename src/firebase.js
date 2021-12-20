@@ -17,6 +17,7 @@ const signInWithUsernameAndPassword = async (email, password) => {
   } catch (err) { 
     return err.message;
   }
+  return null;
 };
 
 const registerWithUsernameAndPassword = async (username, password) => {
@@ -39,7 +40,7 @@ const registerWithUsernameAndPassword = async (username, password) => {
 const resetPassword = async(username) => {
   var retval = null;
   try {
-    await auth.sendPasswordResetEmail(username);
+    await firebase.auth().currentUser.sendPasswordResetEmail(username);
   } catch (err) {
       retval = err.message;
   }return retval;
@@ -51,6 +52,7 @@ const sendVerificationEmail = async() => {
   try {
     user.sendEmailVerification();
   } catch (err) {
+    console.log(err);
     retVal = err.message;
   }return retVal;
 }

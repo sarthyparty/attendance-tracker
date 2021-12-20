@@ -8,7 +8,7 @@ function PasswordReset(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("A password reset link will be sent tnpm sto your email...");
+    const [error, setError] = useState("A password reset link will be sent to your email...");
     const [color, setColor] = useState('green');
 
   // handle button click of login form
@@ -34,12 +34,11 @@ function PasswordReset(props) {
                             break;
                     }
                 }
-            
                 setLoading(false);
             });
         }else{
             setColor('red');
-            setError("Please verify your email. Verification instructions were sent to your email.");
+            setError("If you already created an account, please verify your email. Otherwise, please create a new account.");
         }
         
 

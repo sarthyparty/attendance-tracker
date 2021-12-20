@@ -25,7 +25,7 @@ function Login(props) {
         if(auth.currentUser!=null && auth.currentUser.emailVerified){
           navigate("/dashboard"); 
         }else{
-          setError("Please verify your email. Verification instructions were sent to your email.");
+          setError("If you registered, please verify your email. Verification instructions were sent to your email.");
         }
       } else {
         console.log(value);

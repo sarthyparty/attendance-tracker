@@ -16,7 +16,6 @@ export function containsLettersAndNumbers(password){
             numCount++;
         }
     }
-    console.log("letters: "+letterCount+"     numbers: "+numCount);
     return letterCount>0 && numCount>0;
 }
 
@@ -53,12 +52,19 @@ function Register(props) {
                     }
                 }else{
                     setColor('red');
+                    console.log(value);
+                    //console.log(auth.currentUser.emailVerified);
                     switch(value){
                         case "Firebase: The email address is badly formatted. (auth/invalid-email).":
                             setError("Please type a valid email.");
                             break;
                         case "Firebase: The email address is already in use by another account. (auth/email-already-in-use).":
                             setError("This email is already in use.");
+                            break;
+                        case "Missing or insufficient permissions.":
+                            setColor('green');
+                            sendVerificationEmail();
+                            setError("Email verification instructions are sent to your email. When finished, go to Login");
                             break;
                         default:
                             setError("Registering failed");
