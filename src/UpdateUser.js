@@ -74,19 +74,6 @@ function HandleResetPassword(auth, actionCode, continueUrl, lang) {
         setColor('green');
         setError("Password reset successful!");
         setSuccessfulReset(true);
-
-        // return (
-        //   <div className="text">
-        //   {error && <>
-        //       <small style={{ color: color }}>
-        //             {error}
-        //       </small>
-        //       <br />
-        //   </>}
-        //   <Link to="/login">Login</Link>
-        //   </div>
-        // );
-
   
         // TODO: Display a link back to the app, or sign-in the user directly
         // if the page belongs to the same domain as the app:
@@ -113,8 +100,6 @@ function HandleResetPassword(auth, actionCode, continueUrl, lang) {
     setLoading(false);
   });
   }
-
-
   return (
     <div className = "register">
         <h1>Reset Password</h1>
