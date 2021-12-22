@@ -30,7 +30,7 @@ function PasswordReset(props) {
                             setError("This email is not on file.");
                             break;
                         default:
-                            setError("Registering failed");
+                            setError("Password reset failed");
                             break;
                     }
                 }

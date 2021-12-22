@@ -40,7 +40,7 @@ const registerWithUsernameAndPassword = async (username, password) => {
 const resetPassword = async(username) => {
   var retval = null;
   try {
-    await firebase.auth().currentUser.sendPasswordResetEmail(username);
+    await auth.sendPasswordResetEmail(username);
   } catch (err) {
       retval = err.message;
   }return retval;
