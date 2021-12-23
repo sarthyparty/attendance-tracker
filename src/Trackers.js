@@ -19,8 +19,10 @@ function Trackers() {
     for (let i = 0; i < data.items.length; i++) {
       let date = new Date(data.items[i].datetime);
       data.items[i].date =
-        date.toDateString() + ": " + data.items[i].people.length + " joined";
+        date;
     }
+
+    data.items.sort((a,b) => b.date - a.date)
 
     console.log(data);
 
@@ -64,7 +66,7 @@ function Item(props) {
           pathname: "/dashboard/tracker/".concat(props.tracker.key),
         }}
       >
-        {props.tracker.date}
+        {props.tracker.date.toDateString() + ": " + props.tracker.people.length + " joined"}
       </NavLink>
       &nbsp;&nbsp;
       <button onClick={deleteTracker}>
