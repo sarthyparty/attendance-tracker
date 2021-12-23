@@ -14,6 +14,7 @@ export const createUser = (email) => {
 }
 
 export const getUser = async ({email}) => {
+  console.log("creating user")
   const user = await db2.get(email);
   return user;
 }
@@ -94,4 +95,8 @@ export const getAppearances = () => {
 export const getMembers = async() => {
   const user = await db2.get(localStorage.getItem("email"));
   return user;
+}
+
+export const updateMembers = (user) => {
+  db2.put(user)
 }

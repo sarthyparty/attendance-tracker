@@ -161,10 +161,7 @@ span {
   padding: 2%;
 }
 
-.stats {
-  padding-top: 5%;
-  text-align: center;
-}
+
 
 .lock button {
   border-width: 0px;
@@ -290,3 +287,55 @@ th {
   font-size: 0px;
 }
 
+
+.stats {
+  padding-top: 5%;
+  text-align: center;
+}
+
+.mem-body {
+  padding: 0.5%;
+}
+
+.mem-body a {
+  padding: 0.25%;
+  border-style: groove;
+  border-color: #afdedc;
+  border-radius: 10px;
+  border-width: 0px;
+  font-size: large;
+  text-decoration: none;
+  color: #161925;
+}
+
+.mem-body a:hover {
+  background-color: #afdedc;
+}
+
+.mem-body textarea {
+  padding: 0.25%;
+  border-style: solid;
+  border-color: #afdedc;
+  border-radius: 50px;
+  border-width: 10px;
+  font-size: large;
+  text-decoration: none;
+  color: #161925;
+  background-color: #c4d7f2;
+  text-align: center;
+}
+
+.stats button {
+  padding: 0.25%;
+  border-style: solid;
+  border-color: #afdedc;
+  background-color: #c4d7f2;
+  border-radius: 50px;
+  border-width: 5px;
+  font-size: xx-large;
+  text-decoration: none;
+}
+
+.stats button:hover {
+  background-color: #91eb7a;
+}

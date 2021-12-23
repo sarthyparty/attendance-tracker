@@ -13,6 +13,7 @@ import Join from "./Join.js"
 import Welcome from "./Welcome.js";
 import Create from "./CreateTracker.js"
 import PasswordReset from "./PasswordReset";
+import Member from "./Member"
 import UpdateUser from "./UpdateUser"; //change to UpdateUser & give this method a jsx return type
 import ResetMessage from "./ResetMessage";
  
@@ -42,6 +43,7 @@ function App() {
                 <Route path="tracker/:id/*" element={<Tracker/>} />
                 <Route path="stats" element={<Stats/>} />
                 <Route path="trackers" element={<Trackers/>} />
+                <Route path="member/:name/*" element={<Member/>} />
               </Route>
             </Routes>
           </div>

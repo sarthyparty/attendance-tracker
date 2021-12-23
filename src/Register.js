@@ -43,12 +43,12 @@ function Register(props) {
                 if (value == null) {
                     console.log(auth.currentUser);
                     if(auth.currentUser.emailVerified){
-                        createUser(username);
                         navigate("/login");
                     }else{
                         setColor('green');
                         sendVerificationEmail();
                         setError("Email verification instructions are sent to your email. When finished, go to Login");
+                        createUser(username);
                         //need an async method that will wait for user to click verification --> navigate to dashboard;
                     }
                 }else{
@@ -66,6 +66,8 @@ function Register(props) {
                             setColor('green');
                             sendVerificationEmail();
                             setError("Email verification instructions are sent to your email. When finished, go to Login");
+                            createUser(username);
+                            console.log("error!")
                             break;
                         default:
                             setError("Registering failed");
