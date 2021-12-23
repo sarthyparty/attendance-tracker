@@ -16,6 +16,7 @@ function Stats(props) {
   const handleClick = () => {
     setLoading(true)
     setError(null)
+    setMembers(members.trim())
     let mems = members.split("\n");
     console.log(mems)
     for (let i = 0; i < mems.length; i++) {
