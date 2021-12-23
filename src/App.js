@@ -13,6 +13,7 @@ import Join from "./Join.js"
 import Welcome from "./Welcome.js";
 import Create from "./CreateTracker.js"
 import PasswordReset from "./PasswordReset";
+import UpdateUser from "./UpdateUser"; //change to UpdateUser & give this method a jsx return type
 import ResetMessage from "./ResetMessage";
  
 function App() {
@@ -33,6 +34,7 @@ function App() {
               <Route path="join/:id" element={<Join/>} />
               <Route path="register" element={<Register/>} />
               <Route path="reset-password" element={<PasswordReset/>} />
+              <Route path="user-updates" element={<UpdateUser/>} /> 
               <Route path="successful-reset" element={<ResetMessage/>} />
               <Route path="dashboard" element={<Dashboard/>}>
                 <Route path="" element={<Welcome/>} />

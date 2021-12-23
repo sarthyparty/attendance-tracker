@@ -17,6 +17,7 @@ const signInWithUsernameAndPassword = async (email, password) => {
   } catch (err) { 
     return err.message;
   }
+  return null;
 };
 
 const registerWithUsernameAndPassword = async (username, password) => {
@@ -51,6 +52,7 @@ const sendVerificationEmail = async() => {
   try {
     user.sendEmailVerification();
   } catch (err) {
+    console.log(err);
     retVal = err.message;
   }return retVal;
 }

@@ -26,10 +26,10 @@ function Login(props) {
     const err = signInWithUsernameAndPassword(username, password);
     err.then((value) => {
       if (value == null) {
-        if(auth.currentUser.emailVerified){
+        if(auth.currentUser!=null && auth.currentUser.emailVerified){
           navigate("/dashboard"); 
         }else{
-          setError("Please verify your email. Verification instructions were sent to your email.");
+          setError("If you registered, please verify your email. Verification instructions were sent to your email.");
         }
       } else {
         console.log(value);
