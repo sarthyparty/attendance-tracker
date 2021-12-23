@@ -1,9 +1,11 @@
-import { verifyPasswordResetCode, confirmPasswordReset, getAuth } from "firebase/auth";
+import { verifyPasswordResetCode, confirmPasswordReset, applyActionCode } from "firebase/auth";
 import {containsLettersAndNumbers} from './Register';
 import React, { useState } from 'react';
 import { useNavigate, Link, Navigate } from "react-router-dom";
 import {initializeApp} from "firebase/app";
 import {auth} from "./firebase";
+
+var verified=false;
 
 function getParameterByName(name, url = window.location.href) {
   name = name.replace(/[\[\]]/g, '\\$&');
@@ -41,10 +43,10 @@ function UpdateUser(props){
       break;
     case 'verifyEmail':
       // Display email verification handler and UI.
-      //handleVerifyEmail(auth, actionCode, continueUrl, lang);
+      jsx_elem = HandleVerifyEmail(auth, actionCode, continueUrl, lang);
       break;
     default: //nothing should be done here
-      // Error: invalid mode.
+      jsx_elem = <div>Inappropriate Mode</div> //good if this was a 404 error page
   }
 
   return jsx_elem;
@@ -83,7 +85,6 @@ function HandleResetPassword(auth, actionCode, continueUrl, lang) {
         // click redirects the user back to the app via continueUrl with
         // additional state determined from that URL's parameters.
       }).catch((error) => {
-        console.log("Inner Error:");
         console.log(error);
         // Error occurred during confirmation. The code might have expired or the
         // password is too weak.
@@ -93,7 +94,6 @@ function HandleResetPassword(auth, actionCode, continueUrl, lang) {
     }
     setLoading(false);
   }).catch((error) => {
-    console.log("Outer Error:");
     console.log(error);
     setColor('red');
     setError("Invalid or expired action code: please reset password again"); 
@@ -122,5 +122,58 @@ function HandleResetPassword(auth, actionCode, continueUrl, lang) {
 
   );
 }
+
+  function HandleVerifyEmail(auth, actionCode, continueUrl, lang) {
+    // Localize the UI to the selected language as determined by the lang
+    // parameter.
+    // Try to apply the email verification code.
+
+    
+    const [successfulVerification, setSuccessfulVerification] = useState(false);
+    const [color, setColor] = useState('red');
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleEmailVerif = () => {
+    setLoading(true);
+    applyActionCode(auth, actionCode).then((resp) => {
+      // Email address has been verified.
+  
+      // TODO: Display a confirmation message to the user.
+      // You could also provide the user with a link back to the app.
+      setColor('green');
+      setError('Verification Successful!');
+      verified=true;
+      setSuccessfulVerification(true);
+  
+      // TODO: If a continue URL is available, display a button which on
+      // click redirects the user back to the app via continueUrl with
+      // additional state determined from that URL's parameters.
+      setLoading(false);
+    }).catch((error) => {
+      // Code is invalid or expired. Ask the user to verify their email address
+      // again.
+      console.log(error);
+      setColor('red');
+      setError('Verification code is invalid or expired. Please verify again.');
+      setSuccessfulVerification(false);
+
+      setLoading(false);
+    });
+    }
+    return (
+      <div className = "register">
+          <h1>Verify Email</h1>
+          {error && <> <small style={{ color: color }}>{error}</small><br /></>}
+          <div className = "button">
+          <input type="button" value={loading ? 'Loading...' : 'Verify Email'} onClick={handleEmailVerif} disabled={loading} /><br />
+          </div>
+          <br/>
+          {successfulVerification || verified ? <Link to="/login">Login</Link> : <></>}
+      </div>
+  
+    );
+  }
+
 
 export default UpdateUser;
