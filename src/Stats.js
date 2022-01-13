@@ -16,19 +16,17 @@ function Stats(props) {
   const handleClick = () => {
     setLoading(true)
     setError(null)
-    setMembers(members.trim())
-    let mems = members.split("\n");
+    let mems1 = members.trim()
+    console.log(mems1)
+    let mems = mems1.split("\n");
     console.log(mems)
     for (let i = 0; i < mems.length; i++) {
       console.log(mems[i])
-      if (mems[i].split(" ").length != 2) {
-        setError("Names must be first name space last name.")
-        setLoading(false)
-        return
-      }
     }
     let list_comb = mems.concat(data.members);
-    data.members = list_comb
+    let set1 = new Set(list_comb)
+    data.members = Array.from(set1)
+    console.log(data.members)
     updateMembers(data)
     setLoading(false)
 

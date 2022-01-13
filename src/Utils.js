@@ -35,6 +35,10 @@ export const getTrackers = async () => {
   return trackers;
 };
 
+export const getAppearancesByTracker = async (key) => {
+  
+}
+
 export const getTracker = async ({id}) => {
   const tracker = await db.get(id);
   return tracker;
@@ -56,8 +60,10 @@ export const joinTracker = (name, tracker, user) => {
   }
   db1.put({
     tracker: tracker.key,
-    user: tracker.user
-  }, (tracker.user+name));
+    user: tracker.user,
+    member: name,
+    datetime: tracker.datetime
+  }, (tracker.key+name));
   tracker.people.push(name);
   db.put(tracker)
   return "Success";
@@ -74,14 +80,14 @@ export const removePerson = (tracker, person) => {
     tracker.people.splice(i, 1);
   }
   db.put(tracker);
-  db1.delete(tracker.user+person);
+  db1.delete(tracker.key+person);
 }
 
 export const removeTracker = (tracker) => {
   db.delete(tracker.key);
   for (let i = 0; i < tracker.people.length; i++) {
     console.log(tracker.people[i]+tracker.user)
-    db1.delete(tracker.user+tracker.people[i]);
+    db1.delete(tracker.key+tracker.people[i]);
   }
 }
 
@@ -99,4 +105,8 @@ export const getMembers = async() => {
 
 export const updateMembers = (user) => {
   db2.put(user)
+}
+
+export const getApperances = (member) => {
+
 }
